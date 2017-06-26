@@ -1,4 +1,8 @@
-questions = {'easy':[["A ___1___ is served on ___2___.",['turkey','Thanksgiving']],
+questions = {'easy':[["Python is a programming ___1___. It was created by Guido \
+                    van Rossum in 1989 and was named after ___2___ Python’s Flying Circus. \
+                    Programming languages allows you to create a program which in \
+                    turn tells a computer what to do.",
+                    ['language','Thanksgiving']],
                     ["I'm losing my ___1___ mind!",['fucking']]],
             'medium':[[" The ___1___ Kid is the best ___2___ ever",['Karate','movie']]],
             'hard':["My dog's name is ___1___ and he is an Old English ___2___"]}
