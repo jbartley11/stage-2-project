@@ -1,20 +1,8 @@
-questions = {'easy':[["Python is a programming ___1___. It was created by Guido \
-                    van Rossum in 1989 and was named after ___2___ Python’s Flying \
-                    Circus. Programming languages allows you to create a ___3___ \
-                    which in turn tells a ___4___ what to do.",
+questions = {'easy':["Python is a programming ___1___. It was created by Guido van Rossum in 1989 and was named after ___2___ Python's Flying Circus. Programming languages allows you to create a ___3___ which in turn tells a ___4___ what to do.",
                     ['language','Monty','program','computer']],
-            'medium':['Python is not a compiled language but an ___1___ one. This \
-                    means that every time a ___2___ is ran, the Python interpreter \
-                    ___3___ the code and converts it into a format, ___4___ code. \
-                    This conversion is what gives the ___5___ the ability to process \
-                    your code.',
+            'medium':['Python is not a compiled language but an ___1___ one. This means that every time a ___2___ is ran, the Python interpreter ___3___ the code and converts it into a format, ___4___ code. This conversion is what gives the ___5___ the ability to process your code.',
                     ['interpreted','program','interprets','byte','computer']],
-            'hard':["Python has builtin ___1___ structures that allow you to hold \
-                    a variety of ___1___. ___2___ are a sequence of characters \
-                    in between single or double ___3___. ___2___ are ___4___, \
-                    which means that once they are created they cannot be changed. \
-                    Lists, which represent a sequence of ___5___ separated values, \
-                    can be changed so they are mutable.",
+            'hard':["Python has builtin ___1___ structures that allow you to hold a variety of information. ___2___ are a sequence of characters in between single or double ___3___. ___2___ are ___4___, which means that once they are created they cannot be changed. Lists, which represent a sequence of ___5___ separated values, can be changed so they are mutable.",
                     ['data','Strings','quotes','immutable','comma']]}
 
 blanks = ['___1___','___2___','___3___','___4___','___5___']
@@ -60,7 +48,7 @@ def tries_left(guess_count):
     """displays text for how many tries are left when an incorrect answer is given"""
 
     if guess_count > 1:
-        return "Sorry, that is the wrong answer. {} tries left!".format(gc)
+        return "Sorry, that is the wrong answer. {} tries left!".format(guess_count)
     else:
         return "Sorry, that is the wrong answer. This is your last chance!"
 
@@ -71,9 +59,10 @@ def ask_question(question_data,guesses):
     q = question_data[0]
     gc = guesses
     b_count = 0
+    processed = []
     for word in question_data[0].split():
         b = find_blank(word,blanks)
-        if b != None:
+        if b != None and b not in processed:
             while True:
                 print "\nThe question is: \n {}\n".format(q)
                 b_input = raw_input("What should filled in for {}? ".format(b))
@@ -85,6 +74,8 @@ def ask_question(question_data,guesses):
                 else:
                     gc -= 1
                     print tries_left(gc)
+            processed.append(b)
+    return "\n {}".format(q)
 
 
 def check_answer(given_answer,correct_answer,guess_count):
@@ -104,10 +95,10 @@ def take_quiz():
 
     """Main function that pulls everything together"""
 
-    dl_question_list = questions[difficulty_level()]
+    question_data = questions[difficulty_level()]
     gc = guess_count()
-    for question_data in dl_question_list:
-            ask_question(question_data,gc)
+    # for question_data in dl_question_list:
+    print ask_question(question_data,gc)
     print "Congratulations you won!"
 
 take_quiz()
