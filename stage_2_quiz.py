@@ -41,6 +41,15 @@ def find_blank(word,blanks):
             return b
     return None
 
+def tries_left(guess_count):
+
+    """displays text for how many tries are left when an incorrect answer is given"""
+
+    if guess_count > 1:
+        return "Sorry, that is the wrong answer. {} tries left!".format(gc)
+    else:
+        return "Sorry, that is the wrong answer. This is your last chance!"
+
 def ask_question(question_data,guesses):
 
     """Asks the question to the player and keeps track of the guesses remaining"""
@@ -61,7 +70,7 @@ def ask_question(question_data,guesses):
                     break
                 else:
                     gc -= 1
-                    print "Sorry, that is the wrong answer. {} tries left!".format(gc)
+                    print tries_left(gc)
 
 
 def check_answer(given_answer,correct_answer,guess_count):
@@ -72,7 +81,7 @@ def check_answer(given_answer,correct_answer,guess_count):
         return True
     else:
         if guess_count == 1:
-            print "Oh no! That was your last chance, you have lost! The answer should have been {}.".format(correct_answer)
+            print "Oh no! You have lost! The answer should have been {}.".format(correct_answer)
             exit()
         else:
             return False
