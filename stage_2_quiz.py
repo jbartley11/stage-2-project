@@ -97,7 +97,6 @@ def take_quiz():
 
     question_data = questions[difficulty_level()]
     gc = guess_count()
-    # for question_data in dl_question_list:
     print ask_question(question_data,gc)
     print "Congratulations you won!"
 
