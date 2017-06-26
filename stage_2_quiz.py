@@ -1,20 +1,23 @@
 questions = {'easy':[["Python is a programming ___1___. It was created by Guido \
-                    van Rossum in 1989 and was named after ___2___ Python’s Flying Circus. \
-                    Programming languages allows you to create a ___3___ which in \
-                    turn tells a ___4___ what to do.",
+                    van Rossum in 1989 and was named after ___2___ Python’s Flying \
+                    Circus. Programming languages allows you to create a ___3___ \
+                    which in turn tells a ___4___ what to do.",
                     ['language','Monty','program','computer']],
-                    ['Python is not a compiled language but an ___1___ one. This means \
-                    that ever time a ___2___ is ran the python interpreter',[]]
-                    ["I'm losing my ___1___ mind!",['fucking']]],
-            'medium':['Python is not a compiled language but an ___1___ one. This means \
-            that ever time a ___2___ is ran the Python interpreter ___3___ the code \
-            and converts it into a format, ___4___ code, so the computer can follow \
-            the instructions you wrote in the code',
-            ['interpreted','program','interprets','byte']],
-            'hard':["",
-            []]}
+            'medium':['Python is not a compiled language but an ___1___ one. This \
+                    means that every time a ___2___ is ran, the Python interpreter \
+                    ___3___ the code and converts it into a format, ___4___ code. \
+                    This conversion is what gives the ___5___ the ability to process \
+                    your code.',
+                    ['interpreted','program','interprets','byte','computer']],
+            'hard':["Python has builtin ___1___ structures that allow you to hold \
+                    a variety of ___1___. ___2___ are a sequence of characters \
+                    in between single or double ___3___. ___2___ are ___4___, \
+                    which means that once they are created they cannot be changed. \
+                    Lists, which represent a sequence of ___5___ separated values, \
+                    can be changed so they are mutable.",
+                    ['data','Strings','quotes','immutable','comma']]}
 
-blanks = ['___1___','___2___','___3___','___4___']
+blanks = ['___1___','___2___','___3___','___4___','___5___']
 
 def difficulty_level():
 
