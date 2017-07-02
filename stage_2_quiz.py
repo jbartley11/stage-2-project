@@ -36,16 +36,28 @@ def ask_guess_count():
 
 def find_blank(word,blanks):
 
-    """Searches word to see if it contains any of the blank strings"""
+    """Searches word to see if it contains any of the blank template strings
 
-    for b in blanks:
-        if b in word:
-            return b
+    Arguments:
+        word -- string to be checked for blank matches
+        blanks -- list of possible blank template strings
+    Return:
+        blank template string or None
+    """
+
+    for blank in blanks:
+        if blank in word:
+            return blank
     return None
 
 def tries_left(guess_count):
 
-    """displays text for how many tries are left when an incorrect answer is given"""
+    """displays text for how many tries are left when an incorrect answer is given
+
+    Arguments:
+        guess_count -- the number of guesses left
+    Return:
+        string telling user how many tries are left"""
 
     if guess_count > 1:
         return "Sorry, that is the wrong answer. {} tries left!".format(guess_count)
@@ -54,32 +66,50 @@ def tries_left(guess_count):
 
 def ask_question(question_data,guess_count):
 
-    """Asks the question to the player and keeps track of the guesses remaining"""
+    """Asks the question to the player and keeps track of the guesses remaining
 
-    q = question_data[0]
-    b_count = 0
+    Arguments:
+        question_data -- list that includes string of question and list of correct answers
+        guess_count -- number of guesses left before question is answered
+    Return:
+        if question is completed it will return fully populated question string
+        otherwise it will exit out when no guesses are left
+        """
+
+    question = question_data[0]
+    blank_count = 0
     processed = []
     for word in question_data[0].split():
-        b = find_blank(word,blanks)
-        if b != None and b not in processed:
+        blank = find_blank(word,blanks)
+        if blank != None and blank not in processed:
             while True:
-                print "\nThe question is: \n {}\n".format(q)
-                b_input = raw_input("What should filled in for {}? ".format(b))
-                answer_result = check_answer(b_input,question_data[1][b_count],guess_count)
+                print "\nThe question is: \n{}\n".format(question)
+                blank_input = raw_input("What should filled in for {}? ".format(blank))
+                answer_result = check_answer(blank_input,question_data[1][blank_count],guess_count)
                 if answer_result:
-                    q = q.replace(b,question_data[1][b_count])
-                    b_count += 1
+                    question = question.replace(blank,question_data[1][blank_count])
+                    blank_count += 1
                     break
                 else:
                     guess_count -= 1
                     print tries_left(guess_count)
-            processed.append(b)
-    return "\n {}".format(q)
+            processed.append(blank)
+    return "\n{}".format(question)
 
 
 def check_answer(given_answer,correct_answer,guess_count):
 
-    """Checks the given answer against the correct one"""
+    """Checks the given answer against the correct one, if guess_count
+    is 1 then it will exit program
+
+    Arguments:
+        given_answer -- answer user has provided
+        correct_answer -- correct answer from question_data
+        guess_count -- number of guesses left
+    Return:
+        returns True if answer is correct, False if wrong with guesses remaining,
+        exits if wrong and no guesses left
+    """
 
     if given_answer.lower() == correct_answer.lower():
         return True
@@ -92,7 +122,11 @@ def check_answer(given_answer,correct_answer,guess_count):
 
 def take_quiz():
 
-    """Main function that pulls everything together"""
+    """Function that gets called to start the quiz, gets questions from ask_difficulty_level,
+    guesses from ask_guess_count, then uses ask_question to prompt user for answer_result
+
+    Return:
+        if user is correct in all answers function will congratulate them"""
 
     question_data = questions[ask_difficulty_level()]
     guess_count = ask_guess_count()
