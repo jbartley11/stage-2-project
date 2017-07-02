@@ -7,32 +7,32 @@ questions = {'easy':["Python is a programming ___1___. It was created by Guido v
 
 blanks = ['___1___','___2___','___3___','___4___','___5___']
 
-def difficulty_level():
+def ask_difficulty_level():
 
     """prompts user for difficulty level. Will not return value until
     one of easy, medium, or hard is given."""
 
-    dl = raw_input("Please select your level of difficulty by entering easy, medium, or hard: ")
-    if dl.lower() not in ['easy','medium','hard']:
+    difficulty_level = raw_input("Please select your level of difficulty by entering easy, medium, or hard: ")
+    if difficulty_level.lower() not in ['easy','medium','hard']:
         print "You did not enter a valid level!"
-        difficulty_level()
+        ask_difficulty_level()
     else:
-        print "You've selected {}! \n".format(dl)
-        return dl
+        print "You've selected {}! \n".format(difficulty_level)
+        return difficulty_level
 
-def guess_count():
+def ask_guess_count():
 
     """Allows user to specify the number of incorrect guesses they
     get before losing"""
 
-    gc_input = raw_input("Please input the number of guesses you have to get each answer correct: ")
+    guess_count_input = raw_input("Please input the number of guesses you have to get each answer correct: ")
     try:
-        gc = int(gc_input)
-        print "OK, you've got {} chances to answer each question!".format(gc)
-        return gc
+        guess_count = int(guess_count_input)
+        print "OK, you've got {} chances to answer each question!".format(guess_count)
+        return guess_count
     except:
         print "You did not enter a valid number!"
-        guess_count()
+        ask_guess_count()
 
 def find_blank(word,blanks):
 
