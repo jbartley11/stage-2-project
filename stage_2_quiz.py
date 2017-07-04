@@ -7,6 +7,10 @@ questions = {'easy':["Python is a programming ___1___. It was created by Guido v
 
 blanks = ['___1___','___2___','___3___','___4___','___5___']
 
+last_try = 1
+question_string_index = 0
+answers_index = 1
+
 def ask_difficulty_level():
 
     """prompts user for difficulty level. Will not return value until
@@ -59,7 +63,7 @@ def tries_left(guess_count):
     Return:
         string telling user how many tries are left"""
 
-    if guess_count > 1:
+    if guess_count > last_try:
         return "Sorry, that is the wrong answer. {} tries left!".format(guess_count)
     else:
         return "Sorry, that is the wrong answer. This is your last chance!"
@@ -76,18 +80,18 @@ def ask_question(question_data,guess_count):
         otherwise it will exit out when no guesses are left
         """
 
-    question = question_data[0]
+    question = question_data[question_string_index]
     blank_count = 0
     processed = []
-    for word in question_data[0].split():
+    for word in question_data[question_string_index].split():
         blank = find_blank(word,blanks)
         if blank != None and blank not in processed:
             while True:
                 print "\nThe question is: \n{}\n".format(question)
                 blank_input = raw_input("What should filled in for {}? ".format(blank))
-                answer_result = check_answer(blank_input,question_data[1][blank_count],guess_count)
+                answer_result = check_answer(blank_input,question_data[answers_index][blank_count],guess_count)
                 if answer_result:
-                    question = question.replace(blank,question_data[1][blank_count])
+                    question = question.replace(blank,question_data[answers_index][blank_count])
                     blank_count += 1
                     break
                 else:
@@ -114,7 +118,7 @@ def check_answer(given_answer,correct_answer,guess_count):
     if given_answer.lower() == correct_answer.lower():
         return True
     else:
-        if guess_count == 1:
+        if guess_count == last_try:
             print "Oh no! You have lost! The answer should have been '{}'.".format(correct_answer)
             exit()
         else:
@@ -134,3 +138,4 @@ def take_quiz():
     print "Congratulations you won!"
 
 take_quiz()
+#  62, 79, 82, 88, 90 and 117.
